@@ -23,3 +23,8 @@ body {
   font-weight: bold;
   cursor: default;
 }
+
+.letra.marcada {
+  background-color: yellow;
+  color: black;
+}
