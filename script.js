@@ -47,7 +47,36 @@ function generarSopa() {
 }
 
 function mostrarRespuesta() {
-  alert("La palabra oculta es: " + palabraActual);
+  const letrasDOM = document.querySelectorAll("#sopa .letra");
+
+  const gridSize = 15;
+  const palabra = palabraActual;
+  const longitud = palabra.length;
+
+  // Busca en horizontal
+  for (let fila = 0; fila < gridSize; fila++) {
+    for (let col = 0; col <= gridSize - longitud; col++) {
+      let encontrada = true;
+      for (let i = 0; i < longitud; i++) {
+        const index = fila * gridSize + col + i;
+        if (letrasDOM[index].textContent !== palabra[i]) {
+          encontrada = false;
+          break;
+        }
+      }
+      if (encontrada) {
+        for (let i = 0; i < longitud; i++) {
+          const index = fila * gridSize + col + i;
+          letrasDOM[index].classList.add("respuesta");
+        }
+        return;
+      }
+    }
+  }
+
+  alert("No se ha podido encontrar visualmente la palabra, pero es: " + palabra);
+}
+
 }
 
 document.addEventListener("click", function (e) {
